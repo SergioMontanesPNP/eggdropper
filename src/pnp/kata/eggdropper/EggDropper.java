@@ -66,7 +66,29 @@ public class EggDropper {
 	 * El coste de esta versión será O(n).
 	 * 
 	 */
-	public int minEggDropper2(int criticalFloor) {
-		return 0;
+	public int minEggDropper2(int criticalFloor) throws CriticalFloorIsToLowException {
+		if(criticalFloor < 1) {
+			throw new CriticalFloorIsToLowException();
+		}
+
+		// int survivingEggs = 2; // Innecesario
+		
+		int minFloor = 1;
+		int maxFloor = 100;
+		int minDrops2 = 0;
+		int nextDropFloor;
+		
+		while(maxFloor >= minFloor) {
+			nextDropFloor = minFloor;
+			if(EggDropperUtils.dropAnEggAndItBreaks(nextDropFloor, criticalFloor)) {
+				// survivingEggs--; // Innecesario
+				break;
+			} else {
+				minFloor++;
+			}
+			minDrops2++;
+		}
+		
+		return minDrops2;
 	}
 }
