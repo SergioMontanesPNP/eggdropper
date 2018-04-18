@@ -35,12 +35,12 @@ public class EggDropper {
 		 * (aun a pesar de que la variable no tenga uso en el método).
 		 */
 		@SuppressWarnings("unused")
-		int searchingCriticalFloor = calculateAverage(minFloor, maxFloor);
+		int searchingCriticalFloor = EggDropperUtils.calculateAverage(minFloor, maxFloor);
 		
 		while(maxFloor >= minFloor) {
-			nextDropFloor = calculateAverage(minFloor, maxFloor);
+			nextDropFloor = EggDropperUtils.calculateAverage(minFloor, maxFloor);
 			minDrops100++;
-			if(dropAnEggAndItBreaks(nextDropFloor, criticalFloor)) {
+			if(EggDropperUtils.dropAnEggAndItBreaks(nextDropFloor, criticalFloor)) {
 				// survivingEggs--; // Innecesario
 				maxFloor = nextDropFloor - 1;
 			} else {
@@ -50,15 +50,5 @@ public class EggDropper {
 		}
 		
 		return minDrops100;
-	}
-
-	private int calculateAverage(int minFloor, int maxFloor) {
-		return (minFloor + maxFloor) / 2;
-	}
-
-	private boolean dropAnEggAndItBreaks(int dropFloor, int criticalFloor) {
-		if(dropFloor > criticalFloor)
-			return true;
-		return false;
 	}
 }
