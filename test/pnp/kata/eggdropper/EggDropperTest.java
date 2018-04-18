@@ -86,10 +86,57 @@ public class EggDropperTest {
 	}
 
 	@Test
-	public void test09_MinEggDropper100_criticalFloor() throws CriticalFloorIsToLowException {
+	public void test09_MinEggDropper100_criticalFloorIsAboveTheLastFloor() throws CriticalFloorIsToLowException {
 		criticalFloor = 101;
 		expectedResult = 7;
 		assertEquals(expectedResult, eggDropper.minEggDropper100(criticalFloor));
+	}
+	
+	@Test(expected=CriticalFloorIsToLowException.class)
+	public void test10_minEggDropper2_criticalFloorNegative_throwCriticalFloorIsToLowException() throws CriticalFloorIsToLowException {
+		criticalFloor = -1;
+		eggDropper.minEggDropper2(criticalFloor);
+	}
+	
+	@Test(expected=CriticalFloorIsToLowException.class)
+	public void test11_minEggDropper2_criticalFloor0_throwCriticalFloorIsToLowException() throws CriticalFloorIsToLowException {
+		criticalFloor = 0;
+		eggDropper.minEggDropper2(criticalFloor);
+	}
+	
+	@Test
+	public void test12_minEggDropper2_criticalFloorIsFirstFloor() throws CriticalFloorIsToLowException {
+		criticalFloor = 1;
+		expectedResult = 1;
+		assertEquals(expectedResult, eggDropper.minEggDropper2(criticalFloor));
+	}
+	
+	@Test
+	public void test13_minEggDropper2_criticalFloorIsCentralFloor() throws CriticalFloorIsToLowException {
+		criticalFloor = 50;
+		expectedResult = 50;
+		assertEquals(expectedResult, eggDropper.minEggDropper2(criticalFloor));
+	}
+	
+	@Test
+	public void test14_minEggDropper2_criticalFloorIsCentralFloor() throws CriticalFloorIsToLowException {
+		criticalFloor = 50;
+		expectedResult = 50;
+		assertEquals(expectedResult, eggDropper.minEggDropper2(criticalFloor));
+	}
+	
+	@Test
+	public void test15_minEggDropper2_criticalFloorIsLastFloor() throws CriticalFloorIsToLowException {
+		criticalFloor = 100;
+		expectedResult = 100;
+		assertEquals(expectedResult, eggDropper.minEggDropper2(criticalFloor));
+	}
+	
+	@Test
+	public void test16_minEggDropper2_criticalFloorIsAboveTheLastFloor() throws CriticalFloorIsToLowException {
+		criticalFloor = 101;
+		expectedResult = 100;
+		assertEquals(expectedResult, eggDropper.minEggDropper2(criticalFloor));
 	}
 
 }

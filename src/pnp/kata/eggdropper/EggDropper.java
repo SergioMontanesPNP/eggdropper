@@ -51,4 +51,22 @@ public class EggDropper {
 		
 		return minDrops100;
 	}
+	
+	/**
+	 * INTERMEDIATE
+	 * 
+	 * En esta versión, puesto que al menos debe quedar un huevo intacto,
+	 * la única forma de encontrar el criticalFloor sin romperlos todos,
+	 * es hacer una búsqueda lineal. Empezar desde el primer piso e ir
+	 * subiendo hasta que se rompa el primer huevo. Cuando esto suceda,
+	 * sabremos que el criticalFloor es el piso inmediatamente inferior.
+	 * 
+	 * De nuevo, no necesitamos almacenar ninguna variable que contenga
+	 * el número de huevos "vivos"
+	 * El coste de esta versión será O(n).
+	 * 
+	 */
+	public int minEggDropper2(int criticalFloor) {
+		return 0;
+	}
 }
