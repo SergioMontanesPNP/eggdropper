@@ -1,6 +1,8 @@
 package pnp.kata.eggdropper;
 
 import pnp.kata.eggdropper.exceptions.CriticalFloorIsToLowException;
+import pnp.kata.eggdropper.exceptions.IncorrectNumberOfEggsException;
+import pnp.kata.eggdropper.exceptions.IncorrectNumberOfFloorsException;
 
 public class EggDropper {
 
@@ -101,8 +103,61 @@ public class EggDropper {
 	 * únicamente dos huevos, realizaremos una búsqueda lineal entre
 	 * el rango de pisos que todavía no se haya descartado.
 	 */
-	public int minEggDropperX(int criticalFloor, int x, int y) {
+	public int minEggDropperX(int criticalFloor, int x, int y)
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException,
+			IncorrectNumberOfFloorsException {
+		final int numberOfEggsToApplyLinearAlgorithm = 2;
+		int minDrops = 0;
+		int nextDropFloor;
 		
-		return 0;
+		int survivingEggs = x;
+		int minFloor = 1;
+		int maxFloor = y;
+
+		if(criticalFloor < 1)
+			throw new CriticalFloorIsToLowException();
+		if(survivingEggs < 2)
+			throw new IncorrectNumberOfEggsException();
+		if(maxFloor < 1)
+			throw new IncorrectNumberOfFloorsException();
+		
+		/*
+		 * De nuevo, la variable 'searchingCriticalFloor' terminará conteniendo
+		 * el valor del criticalFloor, correctamente calculado.
+		 */
+		@SuppressWarnings("unused")
+		int searchingCriticalFloor = EggDropperUtils.calculateAverage(minFloor, maxFloor);
+		
+		boolean weMustApplyLinearAlgorithm;
+		while(maxFloor >= minFloor) {
+			weMustApplyLinearAlgorithm = survivingEggs == numberOfEggsToApplyLinearAlgorithm;
+			
+			if(weMustApplyLinearAlgorithm) {
+				nextDropFloor = minFloor;
+			} else {
+				nextDropFloor = EggDropperUtils.calculateAverage(minFloor, maxFloor);
+			}
+			
+			if(EggDropperUtils.dropAnEggAndItBreaks(nextDropFloor, criticalFloor)) {
+				survivingEggs--;
+				if(weMustApplyLinearAlgorithm) {
+					break;
+				} else {
+					maxFloor = nextDropFloor - 1;					
+				}
+			} else {
+				if(weMustApplyLinearAlgorithm) {
+					searchingCriticalFloor = minFloor;
+					minFloor++;					
+				} else {
+					searchingCriticalFloor = nextDropFloor;
+					minFloor = nextDropFloor + 1;
+				}
+			}
+			
+			minDrops++;
+		}
+
+		return minDrops;
 	}
 }
