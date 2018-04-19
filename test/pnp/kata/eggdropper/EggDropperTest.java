@@ -247,7 +247,18 @@ public class EggDropperTest {
 		criticalFloor = 55;
 		numberOfEggs = 3;
 		numberOfFloors = NUMBER_OF_FLOORS_BY_DEFAULT;
-		expectedResult = 1;
+		expectedResult = 7;
+		assertEquals(expectedResult, eggDropper.minEggDropperX(criticalFloor, numberOfEggs, numberOfFloors));
+	}
+	
+	@Test
+	public void test28_minEggDropperX_criticalFloorIsAboveTheLastFloor()
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
+		// Este test genera una ejecución del método que mezcla el algoritmo binario y el lineal. 
+		criticalFloor = 101;
+		numberOfEggs = NUMBER_OF_EGGS_BY_DEFAULT;
+		numberOfFloors = NUMBER_OF_FLOORS_BY_DEFAULT;
+		expectedResult = 7;
 		assertEquals(expectedResult, eggDropper.minEggDropperX(criticalFloor, numberOfEggs, numberOfFloors));
 	}
 
