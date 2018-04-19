@@ -114,12 +114,7 @@ public class EggDropper {
 		int minFloor = 1;
 		int maxFloor = y;
 
-		if(criticalFloor < 1)
-			throw new CriticalFloorIsToLowException();
-		if(survivingEggs < 2)
-			throw new IncorrectNumberOfEggsException();
-		if(maxFloor < 1)
-			throw new IncorrectNumberOfFloorsException();
+		EggDropperUtils.exceptionControl(criticalFloor, survivingEggs, maxFloor);
 		
 		/*
 		 * De nuevo, la variable 'searchingCriticalFloor' terminará conteniendo
@@ -132,11 +127,7 @@ public class EggDropper {
 		while(maxFloor >= minFloor) {
 			weMustApplyLinearAlgorithm = survivingEggs == numberOfEggsToApplyLinearAlgorithm;
 			
-			if(weMustApplyLinearAlgorithm) {
-				nextDropFloor = minFloor;
-			} else {
-				nextDropFloor = EggDropperUtils.calculateAverage(minFloor, maxFloor);
-			}
+			nextDropFloor = EggDropperUtils.calculateNextDropFloor(minFloor, maxFloor, weMustApplyLinearAlgorithm);
 			
 			if(EggDropperUtils.dropAnEggAndItBreaks(nextDropFloor, criticalFloor)) {
 				survivingEggs--;
