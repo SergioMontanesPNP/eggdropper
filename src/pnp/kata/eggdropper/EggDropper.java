@@ -91,4 +91,18 @@ public class EggDropper {
 		
 		return minDrops2;
 	}
+
+	/**
+	 * HARD
+	 * 
+	 * En esta versión debemos hacer una mezcla de las dos anteriores.
+	 * Mientras tengamos más de dos huevos "vivos", utilizaremos el
+	 * algoritmo de la búsqueda binaria. Si en algún momento quedan
+	 * únicamente dos huevos, realizaremos una búsqueda lineal entre
+	 * el rango de pisos que todavía no se haya descartado.
+	 */
+	public int minEggDropperX(int criticalFloor, int x, int y) {
+		
+		return 0;
+	}
 }
