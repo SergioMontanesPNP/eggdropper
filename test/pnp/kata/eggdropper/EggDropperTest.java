@@ -38,40 +38,46 @@ public class EggDropperTest {
 	}
 
 	@Test(expected=CriticalFloorIsToLowException.class)
-	public void test01_MinEggDropper100_criticalFloorNegative_throwCriticalFloorIsToLowException() throws CriticalFloorIsToLowException {
+	public void test01_MinEggDropper100_criticalFloorNegative_throwCriticalFloorIsToLowException()
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
 		criticalFloor = -1;
 		eggDropper.minEggDropper100(criticalFloor);
 	}
 
 	@Test(expected=CriticalFloorIsToLowException.class)
-	public void test02_MinEggDropper100_criticalFloor0_throwCriticalFloorIsToLowException() throws CriticalFloorIsToLowException {
+	public void test02_MinEggDropper100_criticalFloor0_throwCriticalFloorIsToLowException()
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
 		criticalFloor = 0;
 		eggDropper.minEggDropper100(criticalFloor);
 	}
 	
 	@Test
-	public void test03_MinEggDropper100_criticalFloorIsFirstFloor() throws CriticalFloorIsToLowException {
+	public void test03_MinEggDropper100_criticalFloorIsFirstFloor()
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
 		criticalFloor = 1;
 		expectedResult = 7;
 		assertEquals(expectedResult, eggDropper.minEggDropper100(criticalFloor));
 	}
 	
 	@Test
-	public void test04_MinEggDropper100_criticalFloorIs2() throws CriticalFloorIsToLowException {
+	public void test04_MinEggDropper100_criticalFloorIs2()
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
 		criticalFloor = 1;
 		expectedResult = 7;
 		assertEquals(expectedResult, eggDropper.minEggDropper100(criticalFloor));
 	}
 
 	@Test
-	public void test05_MinEggDropper100_criticalFloorIsCentralFloor() throws CriticalFloorIsToLowException {
+	public void test05_MinEggDropper100_criticalFloorIsCentralFloor()
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
 		criticalFloor = 50;
 		expectedResult = 6;
 		assertEquals(expectedResult, eggDropper.minEggDropper100(criticalFloor));
 	}
 
 	@Test
-	public void test06_MinEggDropper100_complex() throws CriticalFloorIsToLowException {
+	public void test06_MinEggDropper100_complex()
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
 		// Encontrar un número como el 67 implica que la búsqueda binaria tendrá que
 		// pivotar cada vez en una dirección, por lo que es un test interesante.
 		criticalFloor = 67;
@@ -80,68 +86,78 @@ public class EggDropperTest {
 	}
 
 	@Test
-	public void test07_MinEggDropper100_criticalFloorIs99() throws CriticalFloorIsToLowException {
+	public void test07_MinEggDropper100_criticalFloorIs99()
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
 		criticalFloor = 99;
 		expectedResult = 7;
 		assertEquals(expectedResult, eggDropper.minEggDropper100(criticalFloor));
 	}
 
 	@Test
-	public void test08_MinEggDropper100_criticalFloorIsLastFloor() throws CriticalFloorIsToLowException {
+	public void test08_MinEggDropper100_criticalFloorIsLastFloor()
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
 		criticalFloor = 100;
 		expectedResult = 7;
 		assertEquals(expectedResult, eggDropper.minEggDropper100(criticalFloor));
 	}
 
 	@Test
-	public void test09_MinEggDropper100_criticalFloorIsAboveTheLastFloor() throws CriticalFloorIsToLowException {
+	public void test09_MinEggDropper100_criticalFloorIsAboveTheLastFloor()
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
 		criticalFloor = 101;
 		expectedResult = 7;
 		assertEquals(expectedResult, eggDropper.minEggDropper100(criticalFloor));
 	}
 	
 	@Test(expected=CriticalFloorIsToLowException.class)
-	public void test10_minEggDropper2_criticalFloorNegative_throwCriticalFloorIsToLowException() throws CriticalFloorIsToLowException {
+	public void test10_minEggDropper2_criticalFloorNegative_throwCriticalFloorIsToLowException()
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
 		criticalFloor = -1;
 		eggDropper.minEggDropper2(criticalFloor);
 	}
 	
 	@Test(expected=CriticalFloorIsToLowException.class)
-	public void test11_minEggDropper2_criticalFloor0_throwCriticalFloorIsToLowException() throws CriticalFloorIsToLowException {
+	public void test11_minEggDropper2_criticalFloor0_throwCriticalFloorIsToLowException()
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
 		criticalFloor = 0;
 		eggDropper.minEggDropper2(criticalFloor);
 	}
 	
 	@Test
-	public void test12_minEggDropper2_criticalFloorIsFirstFloor() throws CriticalFloorIsToLowException {
+	public void test12_minEggDropper2_criticalFloorIsFirstFloor()
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
 		criticalFloor = 1;
 		expectedResult = 1;
 		assertEquals(expectedResult, eggDropper.minEggDropper2(criticalFloor));
 	}
 	
 	@Test
-	public void test13_minEggDropper2_criticalFloorIsCentralFloor() throws CriticalFloorIsToLowException {
+	public void test13_minEggDropper2_criticalFloorIsCentralFloor()
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
 		criticalFloor = 50;
 		expectedResult = 50;
 		assertEquals(expectedResult, eggDropper.minEggDropper2(criticalFloor));
 	}
 	
 	@Test
-	public void test14_minEggDropper2_criticalFloorIsCentralFloor() throws CriticalFloorIsToLowException {
+	public void test14_minEggDropper2_criticalFloorIsCentralFloor()
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
 		criticalFloor = 50;
 		expectedResult = 50;
 		assertEquals(expectedResult, eggDropper.minEggDropper2(criticalFloor));
 	}
 	
 	@Test
-	public void test15_minEggDropper2_criticalFloorIsLastFloor() throws CriticalFloorIsToLowException {
+	public void test15_minEggDropper2_criticalFloorIsLastFloor()
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
 		criticalFloor = 100;
 		expectedResult = 100;
 		assertEquals(expectedResult, eggDropper.minEggDropper2(criticalFloor));
 	}
 	
 	@Test
-	public void test16_minEggDropper2_criticalFloorIsAboveTheLastFloor() throws CriticalFloorIsToLowException {
+	public void test16_minEggDropper2_criticalFloorIsAboveTheLastFloor()
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
 		criticalFloor = 101;
 		expectedResult = 100;
 		assertEquals(expectedResult, eggDropper.minEggDropper2(criticalFloor));

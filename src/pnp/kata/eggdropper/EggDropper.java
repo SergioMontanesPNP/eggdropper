@@ -15,43 +15,16 @@ public class EggDropper {
 	 * Puesto que disponemos de 100 huevos, el algoritmo nunca los romperá
 	 * todos, por lo que es innecesario llevar la cuenta de los
 	 * que todavía siguen "vivos".
+	 * @throws IncorrectNumberOfFloorsException 
+	 * @throws IncorrectNumberOfEggsException 
 	 */
-	public int minEggDropper100(int criticalFloor) throws CriticalFloorIsToLowException {
-		if(criticalFloor < 1) {
-			throw new CriticalFloorIsToLowException();
-		}
-		
-		// int survivingEggs = 100; // Innecesario
-		
-		int minFloor = 1;
+	public int minEggDropper100(int criticalFloor)
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
+
+		int survivingEggs = 100;
 		int maxFloor = 100;
-		int minDrops100 = 0;
-		int nextDropFloor;
 		
-		/*
-		 * La variable 'searchingCriticalFloor' terminará conteniendo el valor del criticalFloor,
-		 * correctamente calculado.
-		 * 
-		 * Aunque el enunciado hace un recordatorio de que el desafio no es encontrar este número,
-		 * creo que al menos es interesante tener una variable que termine conteniéndolo
-		 * (aun a pesar de que la variable no tenga uso en el método).
-		 */
-		@SuppressWarnings("unused")
-		int searchingCriticalFloor = EggDropperUtils.calculateAverage(minFloor, maxFloor);
-		
-		while(maxFloor >= minFloor) {
-			nextDropFloor = EggDropperUtils.calculateAverage(minFloor, maxFloor);
-			minDrops100++;
-			if(EggDropperUtils.dropAnEggAndItBreaks(nextDropFloor, criticalFloor)) {
-				// survivingEggs--; // Innecesario
-				maxFloor = nextDropFloor - 1;
-			} else {
-				searchingCriticalFloor = nextDropFloor;
-				minFloor = nextDropFloor + 1;
-			}
-		}
-		
-		return minDrops100;
+		return minEggDropperX(criticalFloor, survivingEggs, maxFloor);
 	}
 	
 	/**
@@ -66,32 +39,17 @@ public class EggDropper {
 	 * De nuevo, no necesitamos almacenar ninguna variable que contenga
 	 * el número de huevos "vivos"
 	 * El coste de esta versión será O(n).
+	 * @throws IncorrectNumberOfFloorsException 
+	 * @throws IncorrectNumberOfEggsException 
 	 * 
 	 */
-	public int minEggDropper2(int criticalFloor) throws CriticalFloorIsToLowException {
-		if(criticalFloor < 1) {
-			throw new CriticalFloorIsToLowException();
-		}
+	public int minEggDropper2(int criticalFloor)
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
 
-		// int survivingEggs = 2; // Innecesario
-		
-		int minFloor = 1;
+		int survivingEggs = 2;
 		int maxFloor = 100;
-		int minDrops2 = 0;
-		int nextDropFloor;
 		
-		while(maxFloor >= minFloor) {
-			nextDropFloor = minFloor;
-			if(EggDropperUtils.dropAnEggAndItBreaks(nextDropFloor, criticalFloor)) {
-				// survivingEggs--; // Innecesario
-				break;
-			} else {
-				minFloor++;
-			}
-			minDrops2++;
-		}
-		
-		return minDrops2;
+		return minEggDropperX(criticalFloor, survivingEggs, maxFloor);
 	}
 
 	/**
@@ -104,8 +62,7 @@ public class EggDropper {
 	 * el rango de pisos que todavía no se haya descartado.
 	 */
 	public int minEggDropperX(int criticalFloor, int x, int y)
-			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException,
-			IncorrectNumberOfFloorsException {
+			throws CriticalFloorIsToLowException, IncorrectNumberOfEggsException, IncorrectNumberOfFloorsException {
 		final int numberOfEggsToApplyLinearAlgorithm = 2;
 		int minDrops = 0;
 		int nextDropFloor;
@@ -116,10 +73,14 @@ public class EggDropper {
 
 		EggDropperUtils.exceptionControl(criticalFloor, survivingEggs, maxFloor);
 		
-		/*
-		 * De nuevo, la variable 'searchingCriticalFloor' terminará conteniendo
-		 * el valor del criticalFloor, correctamente calculado.
-		 */
+		/* 
+	     * La variable 'searchingCriticalFloor' terminará conteniendo el valor del criticalFloor, 
+	     * correctamente calculado. 
+	     *  
+	     * Aunque el enunciado hace un recordatorio de que el desafio no es encontrar este número, 
+	     * creo que al menos es interesante tener una variable que termine conteniéndolo 
+	     * (aun a pesar de que la variable no tenga uso en el método). 
+	     */ 
 		@SuppressWarnings("unused")
 		int searchingCriticalFloor = EggDropperUtils.calculateAverage(minFloor, maxFloor);
 		
